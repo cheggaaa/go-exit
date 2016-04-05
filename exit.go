@@ -16,7 +16,7 @@ var onExitCallbacks = make([]func(), 0)
 var onExitMu sync.Mutex
 
 // Just wait the signals for exit
-// Return log message and signal
+// Return catched signal
 func Wait() interface{} {
 	// catch signals
 	exit := make(chan os.Signal, 1)
