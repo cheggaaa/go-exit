@@ -2,14 +2,18 @@ This package provide handling exit signals (SIGKILL, SIGTERM, SIGQUIT and Interr
 
 It's not difficult to write, just dead simple to use)  
 
-### Simple example
+## Installation
+```go get -u gopkg.in/cheggaaa/go-exit.v1```
+
+#### Simple example
 
 ```go
 package main
 
 import (
-	"exit"
 	"fmt"
+	
+	"gopkg.in/cheggaaa/go-exit.v1"
 )
 
 func main() {
@@ -31,26 +35,28 @@ func myAppStart() {
 }
 
 func myAppStop() {
+	// Do something for exit 
 	fmt.Println("my app stop")
 }
 
 ```
 
-### Advanced example
+#### Advanced example
 
 ```go
 package main
 
 import (
-	"exit"
 	"fmt"
 	"os"
 	"syscall"
 	"time"
+	
+	"gopkg.in/cheggaaa/go-exit.v1"
 )
 
 func main() {
-  // we can enable http profiling ("net/http/pprof")
+	// we can enable http profiling ("net/http/pprof")
 	if e := exit.EnableHttpProfiling(""); e != nil {
 		fmt.Println("Oops can't enable pprof:", e)
 	}
@@ -97,7 +103,7 @@ func myCallback() {
 }
 
 func myAppStop() {
-  // Do something for exit 
+	// Do something for exit 
 	fmt.Println("my app stop")
 }
 
