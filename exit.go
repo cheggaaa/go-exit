@@ -1,8 +1,9 @@
-// Small and simple helper for handling exit signals (SIGKILL, SIGTERM, SIGQUIT and Interrupt)
+// Exit - small and simple helper for handling exit signals (SIGKILL, SIGTERM, SIGQUIT and Interrupt)
 package exit
 
 import (
 	"net/http"
+	// import for a
 	_ "net/http/pprof"
 	"os"
 	"os/signal"
@@ -15,7 +16,7 @@ var closeSignal = make(chan string)
 var onExitCallbacks = make([]func(), 0)
 var onExitMu sync.Mutex
 
-// Just wait the signals for exit
+// Wait the signals for exit
 // Return catched signal
 func Wait() interface{} {
 	// catch signals
@@ -30,14 +31,13 @@ func Wait() interface{} {
 	return sig
 }
 
-// Send exit signal with given message
+// Exit send close signal with given message
 func Exit(message string) {
 	closeSignal <- message
 }
 
-// Helper for enable http profiling
-// Default addr is ':6060'
-func EnableHttpProfiling(addr string) (err error) {
+// EnableHttpProfiling helps easy wake up built in http profiler
+func EnableHTTPProfiling(addr string) error {
 	if addr == "" {
 		addr = ":6060"
 	}
@@ -46,15 +46,16 @@ func EnableHttpProfiling(addr string) (err error) {
 		e <- http.ListenAndServe(addr, nil)
 	}()
 	select {
-	case err = <-e:
-		return
-	case <-time.After(time.Millisecond):
+	case err := <-e:
+		return err
+	case <-time.After(time.Millisecond * 5):
 		return nil
 	}
-	return
+	return nil
 }
 
-// Add callback for exit
+// On adds exit callback
+// callbacks will be executed before exit
 func On(f func()) {
 	onExitMu.Lock()
 	onExitCallbacks = append(onExitCallbacks, f)

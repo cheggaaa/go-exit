@@ -57,7 +57,7 @@ import (
 
 func main() {
 	// we can enable http profiling ("net/http/pprof")
-	if e := exit.EnableHttpProfiling(""); e != nil {
+	if e := exit.EnableHTTPProfiling(""); e != nil {
 		fmt.Println("Oops can't enable pprof:", e)
 	}
 	

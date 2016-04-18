@@ -41,10 +41,10 @@ func TestExit(t *testing.T) {
 	}
 }
 
-func TestEnableHttpProfiling(t *testing.T) {
+func TestEnableHTTPProfiling(t *testing.T) {
 	// test error
 	var e error
-	if e = EnableHttpProfiling(":-80"); e == nil {
+	if e = EnableHTTPProfiling(":-80"); e == nil {
 		t.Errorf("Expected error, but recieve nil")
 	}
 	t.Log(e)
