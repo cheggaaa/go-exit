@@ -1,4 +1,4 @@
-// Exit - small and simple helper for handling exit signals (SIGKILL, SIGTERM, SIGQUIT and Interrupt)
+// Package exit - small and simple helper for handling exit signals (SIGKILL, SIGTERM, SIGQUIT and Interrupt)
 package exit
 
 import (
@@ -36,7 +36,7 @@ func Exit(message string) {
 	closeSignal <- message
 }
 
-// EnableHttpProfiling helps easy wake up built in http profiler
+// EnableHTTPProfiling helps easy wake up built in http profiler
 func EnableHTTPProfiling(addr string) error {
 	if addr == "" {
 		addr = ":6060"
@@ -51,7 +51,6 @@ func EnableHTTPProfiling(addr string) error {
 	case <-time.After(time.Millisecond * 5):
 		return nil
 	}
-	return nil
 }
 
 // On adds exit callback
