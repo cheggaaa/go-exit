@@ -3,7 +3,7 @@ This package provide handling exit signals (SIGKILL, SIGTERM, SIGQUIT and Interr
 It's not difficult to write, just dead simple to use)  
 
 ## Installation
-```go get -u gopkg.in/cheggaaa/go-exit.v1```
+```go get -u github.com/cheggaaa/go-exit```
 
 #### Simple example
 
@@ -13,7 +13,7 @@ package main
 import (
 	"fmt"
 	
-	"gopkg.in/cheggaaa/go-exit.v1"
+	"github.com/cheggaaa/go-exit"
 )
 
 func main() {
@@ -52,7 +52,7 @@ import (
 	"syscall"
 	"time"
 	
-	"gopkg.in/cheggaaa/go-exit.v1"
+	"github.com/cheggaaa/go-exit"
 )
 
 func main() {
